@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 #import scrapy
+from scrapy import FormRequest
 from scrapy.spiders import CrawlSpider, Rule
 from adagio_scraper.items import Tea
+from adagio_scraper.spiders import review
 from bs4 import BeautifulSoup
 
 class TeaSpider(CrawlSpider):
@@ -34,6 +36,10 @@ class TeaSpider(CrawlSpider):
         item['spider'] = self.name
         item['tea_type'] = 'black'
 
+        rs = review.ReviewScraper(sku = item['sku'], review_count = item['rating_count'])
+        rs.get_reviews()
+
         return item
 
- 
+
+
