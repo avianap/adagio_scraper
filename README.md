@@ -1,18 +1,12 @@
 ### Usage
-#### Set up Conda environment
+#### Create docker container
 
 ```
-conda env create -f environment.yml
-conda activate adagio_env
+docker-compose build
 ```
 
 #### Run Scrape
 ```
-python 
-scrapy crawl tea_names -o example.csv
+docker-compose run app scrapy crawl tea
 ```
 
-#### Remove conda env
-```
-conda activate adagio_env
-```
